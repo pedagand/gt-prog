@@ -1,0 +1,25 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 12 Novembre 2021, 10h30
+
+who: |
+  Ada Vienot (IRIF)
+
+what: |
+  Synchronous semantics and functional reactive programming: a tentative unification
+
+
+  Reactive systems, which are omnipresent from airplanes to videogames, execute in continuous interaction with their environment. Functional reactive programming (FRP) aims to describe these systems as mathematical functions between the infinite streams of their inputs and outputs.
+
+  Several lines of research have enriched this approach with strong type systems: works based on Nakano's guarded recursion use type-theoretical modalities to guarantee productivity. While this approach has its benefits, many of such domain specific functional languages fail to have a runtime suitable for resource-scarce environments. Such environments usually use the synchronous programming paradigm, which uses more specialized methods, but gives strong guarantees on the efficiency of the program.
+
+  In this presentation, we aim to present a recent synthesis between the two approaches by describing how a FRP language can be given a semantics in the synchronous style. We will then investigate the potentially deeper connections between synchronous programming and FRP. 
+  
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts

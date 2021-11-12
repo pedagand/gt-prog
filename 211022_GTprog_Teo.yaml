@@ -1,0 +1,28 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 22 Octobre 2021, 10h30
+
+who: |
+  Théo Zimmermann (IRIF)
+
+what: |
+  PR of the Month: Architecture of a GitHub bot, the trigger-action model
+
+
+  In the context of the development of the Coq proof assistant, I have
+  created and maintained a multi-function bot to assist developers in
+  automating some basic and repetitive tasks. In this talk, I will
+  present a recent pull request that was submitted to the bot
+  repository and this will be an opportunity to present the way the
+  bot is architectured, and how it uses a modern, typed, GitHub API
+  and suitable OCaml libraries to implement its features, and how that
+  makes it easy to extend.
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts

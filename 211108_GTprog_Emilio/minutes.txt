@@ -1,0 +1,58 @@
+"Learning to prove theorems via interacting with proof assistants"
+  https://arxiv.org/abs/1905.09381
+
+First-ish paper on the topic, very cited
+
+What is achieved?
+  - dataset of 150k theorems (with full proofstate)
+  - encoder/decoder architecture over the AST of a subset of Coq tactics
+  - a model trained over Γ ⊢ _ : T
+    (actually, strict subset of Γ)
+
+Remark: in today's Coq, Γ is really a giant, structure-less bag of
+*everything* loaded from prelude+libraries
+
+Does it work?
+  it is not very impressive
+  low hanging fruit: hypothesis selection
+    here: they forget most of the context, to make training tractable
+       -> missed opportunity
+
+Is it usable?
+  absolutely not
+  results are not even reproducible
+
+Take-away?
+  tree encoder architecture works
+    Tai, K. S., Socher, R., and Manning, C. D.
+    Improved semantic representations from tree-structured long short-term memory networks
+    arXiv:1503.00075
+
+  tree decoder architecture works
+    Yin, P. and Neubig, G.
+    A syntactic neural model for general-purpose code generation
+    arXiv:1704.01696
+
+
+QUESTION: how does the model produce tactics from the proofstate?
+  tree decoder is used to sample the AST of tactics
+
+"TacTok: semantics-aware proof synthesis"
+  https://people.cs.umass.edu/~brun/pubs/pubs/First20oopsla.pdf
+
+Incremental improvement of the previous paper
+  considering the proof script to drive learning/tactic generation
+
+More significantly: compare with various near-trivial synthesis methods (SeqOnly, WeightedRandom, WeightedGreedy)
+
+
+
+QUESTION: need to define a distance between goals
+          "how far off is prediction from ground truth?"
+  /> not clear what that should be in the context of tactic scripts
+
+References:
+  - machine learning cheatsheet
+    https://stanford.edu/~shervine/teaching/cs-229/
+  - Eran Yahave
+    http://www.cs.technion.ac.il/~yahave/
