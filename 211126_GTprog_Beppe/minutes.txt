@@ -1,0 +1,107 @@
+On type cases, union elimination and occurrence typing
+
+occurence typing: types refined though case analysis on values
+  origin: Typed Racket
+
+motivation for the work:
+  - refinement of types by values
+  - expressive types
+      eg.: (Int → Int) ∧ (String → String)
+        domain: Int ∨ String
+          cf.: Forsythe (Reynolds)
+        intuition: f ∈ S → T if ∀ s ∈ S, f(s) ∈ T
+      eg.: (Odd → Odd) ∧ (Even → Even) ⊆ Int → Int
+  - inference
+  - typecase ought to be any arbitrary expression
+
+Slide 3: types
+  t ::= ... | t ∨ t | t ∧ t | ¬ t | ∅ | ⊤
+
+  set-theoretic interpretation
+    〚 ¬ t 〛=  Values \ 〚 t 〛
+
+  semantic subtypng: _ ≤ _ ⇔ 〚 _ 〛⊆ 〚 _ 〛
+
+  Γ ⊢ e : t₁
+  Γ ⊢ e : t₂
+  ­­­­­­­­­­­­­­­­
+  Γ ⊢ e : t₁ ∧ t₂
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Syntax & specification
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+terms
+  e ::= ... | e ∈ t ? e : e
+
+  occurence typing rules
+
+    Γ ⊢ e : t
+    Γ ⊢ e₁ : t₁
+    ­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­ [typecase-L]
+    Γ ⊢ e ∈ t ? e₁ : e₂ : t₁
+
+    Γ ⊢ e : ¬ t
+    Γ ⊢ e₂ : t₂
+    ­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­ [typecase-R]
+    Γ ⊢ e ∈ t ? e₁ : e₂ : t₂
+
+      CHALLENGE: must synthesize e ∈ A ∨ B
+
+    Γ ⊢ e' : t₁ ∨ t₂
+    Γ, y : t₁ ⊢ e : t
+    Γ, y : t₂ ⊢ e : t
+    ­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­ [∨]
+    Γ ⊢ e [y ↦ e'] : t
+
+      CHALLENGE: how to find e'? Which types t₁ ∨ t₂?
+
+QUESTION: how to typecheck at ¬A?
+  ANSWER: by subsumption
+    eg. Bool ≤ ¬ Int
+    eg. λ (x : Int → Int). x + 1 has type
+          (Int → Int) ∧ ¬ (Bool → Bool)
+     REMARK: use principal type-schemes 
+             normalize type representations
+
+Slide 9: type inference has to be extremely powerful
+  example:
+    f x ∈ Int ? f x + x + 1 : ...
+      knowing that f x is Int ought to refine type of x
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Algorithms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Folklore: making ≤ and ∧ algorithmic
+  - ∧: move it to function hypothesis
+  - ≤: move subtyping to elimination rules
+
+Novelty: strategy for occurence typing
+  Challenges:
+   - type system is not syntax-directed
+     + Rule [∨] is always available
+     + subexpression e' can be anywhere
+     -> solution: normal forms
+   - type system is not analytic
+     subexpression e' split into 2 unknown types
+     -> solution: annotation
+
+Maximal sharing canonical form
+  extract *all* subexpressions
+    maximally shared
+  -> ANF-like form: bind becomes syntax for [∨]
+
+annotations: { Γ ▹ t, ..., Γ ▹ t}
+  interpreted as ... ∧ ... ∧ ...
+    with Γ asserting constraints on context
+
+QUESTION: are these propagated from source to MSCF?
+  ANSWER: no. a solver has to synthesize those
+
+REMARK: reduce typing to finding valid annotations on MSCF forms
+  -> incomplete algorithm
+      heuristic: infer splits based on source (typecases) 
+                                   and target (function)
+
+Demo: http://typecaseunion.github.io/
