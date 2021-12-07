@@ -1,0 +1,23 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 17 Decembre 2021, 10h30
+
+who: |
+  Aliaume Lopez (IRIF, LMF)
+
+what: |
+  Basic Operational Preorders for Algebraic Effects
+
+
+  The "generic operational metatheory" of Johann, Simpson and Voigtländer (LiCS 2010) defines contextual equivalence, in the presence of algebraic effects, in terms of a basic operational preorder on ground-type effect trees. 
+
+  We propose three general approaches to specifying such preorders: (i) operational (ii) denotational, and (iii) axiomatic; coinciding with the three major styles of program semantics. We illustrate these via a nontrivial case study: the combination of probabilistic choice with nondeterminism, for which we show that natural instantiations of the three specification methods (operational in terms of Markov decision processes, denotational using a powerdomain, and axiomatic) all determine the same canonical preorder. We do this in the case of both angelic and demonic nondeterminism. 
+  
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
