@@ -1,0 +1,145 @@
+Consider PCF + effects
+  example: IO
+    print : 
+  example: exception
+    raise, catch
+  example: non-determinism
+    ⊔
+  example: probabilistic choice
+    +
+  example: references
+    get, set
+
+Motivation: contextual equivalence
+  p₁ ≅_{ctx} p₂ ⇔ ∀ C[] : nat, C[p₁] ≡ C[p₂]
+
+  without effects:
+     p₁ ≅_{ctx} p₂ ⇔ ∀ C[] : nat, C[p₁] ⇓ ⇔ C[p₂] ⇓
+
+  with effects?
+    termination is not sufficient
+    non-determinism
+      example: f = λ x. 1 ⊔ 2 vs g = (λ x. 1) ⊔ (λ x. 2)
+        wrt. outputs: same
+        wrt. C[ ] = (λ h. h 0 + h 0) []
+          C[f] = (1 ⊔ 2) + (1 ⊔ 2)
+          C[g] = (1 + 1) ⊔ (2 + 2)
+
+Take PCF + Σ (signature of effects)
+  semantics of trees
+    |_| ∈ Tree(Σ, Val)
+  "operational semantics" with unevaluated effect symbols
+
+  careful: "catch" won't fit
+
+  QUESTION: how about divergence?
+            how about starting from total language instead of PCF?
+    ANSWER: could be an effect, perhaps
+    ANSWER: difference between interaction trees and FreeSpec
+
+  Interlude: Eff has divergence built-in
+
+  example : let rec f () = let x = 0 ⊕ 1 in
+                           if x then f () else 0
+     semantics: infinite tree of (0 ⊕ (0 ⊕ (0 ⊕ ...)))
+
+  QUESTION: how about let rec f () = f ()?
+    ANSWER: either 
+             gives semantics in Tree(Σ, Val + ⊥)
+            or
+             add ε-transition in Tree
+
+  (in)equivalence contextuelle:
+    | C[p₁] | ≤ | C[p₂] |
+
+    subject to
+
+      PROP-Admissible: (tᵢ, t'ᵢ) (i ∈ I)
+
+        ∀ i, tᵢ ≤ t'ᵢ → ⊔ tᵢ ≤ ⊔ t'ᵢ
+
+      PROP-Compositional: ρ₁ : Nat → Tree(Σ, Nat)
+                 ρ₂ : Nat → Tree(Σ, Nat)
+                 t₁, t₂ : Tree(Σ, Nat)
+
+         ∧. t₁ ≤ t₂ 
+         ∧. ∀ i, ρ₁(i) ≤ ρ₂(i)
+         ⇒ t₁ ρ₁ ≤ t₂ ρ₂
+
+      example: interpretation in (P(Nat), ⊆)
+        f(⊥) = ∅
+        f(n) = {n}
+        f(t₁ ⊔ t₂) = f(t₁) ∪ f(t₂)
+          with t₁ ≤ t₂ iff  f(t₁) ⊆ f(t₂)
+
+       non-example: Σ = {+, ×} interpreted into (Nat, +, ×, ≤)
+         t1 = 1 + 2
+         t2 = 1 × 2
+           fails PROP-comp
+         
+
+Si | C[p₁] | ≤ | C[p₂] | then ∃ R logical relation st. { }_{ctx} = R
+  (built from biorthogonality)
+    in the paper in CBV
+    in Johann's paper in CBN
+
+REMARK: interpretation centered on atomic type (eg., Nat)
+        effects remain un-interpreted
+         -> more fine-grained that the "actual" semantics
+  
+REMARK: PROP-Comp can be split in two:
+
+    PROP-Comp-1: ρ : Nat → Tree(Σ, Nat)
+                 t₁, t₂ : Tree(Σ, Nat)
+
+         t₁ ≤ t₂ ⇒ t₁ ρ ≤ t₂ ρ
+
+    PROP-Comp-2: ρ₁, ρ₂ : Nat → Tree(Σ, Nat)
+                 t : Tree(Σ, Nat)
+
+         ρ₁ ≤ ρ₂ ⇒ t ρ₁ ≤ t ρ₂
+  
+       
+QUESTION: use monad to make old-school denotational model?
+  ANSWER: yes, but only use it on base type (nat)
+          monad structure really used
+          only need
+            Nat -[ f ]-> S Nat
+          = Nat -[ sem ]-> S Nat -[ f† ]-> S Nat
+
+Methodology: 3 ways to build models
+  - denotational interpretation in a monad
+    example: (P(nat), ≤)
+
+  - hand-crafted operational interpretation
+    example: reachability in LTS
+
+  - axiomatic preorder
+
+    example: x ⊔ x = x
+             x ⊔ y = y ⊔ x
+             (x ⊔ y) ⊔ z = x ⊔ (y ⊔ z)
+
+             x ⊔ y ≥ x (angelic)
+              or
+             x ⊔ y ≤ x (daemonic)
+
+Benefit: easier to build models through equational system
+  avoid denotational
+    too hard to find right category to get monad and CCC
+
+  example: non-determinism *and* probability
+
+    x ⊔ x = x
+    x ⊔ y = y ⊔ x
+    (x ⊔ y) ⊔ z = x ⊔ (y ⊔ z)
+    x ⊔ y ≥ x
+
+    x ⊕ x = x
+    x ⊕ y = y ⊕ x
+    (x ⊕ y) ⊕ (y ⊕ w) = (x ⊕ z) ⊕ (y ⊕ w)
+
+    x ⊕ (y ⊔ z) = (x ⊕ y) ⊔ (x ⊕ z)   [KEY: interaction non-det. / proba.]
+
+    example: 3 ⊕ (1 ⊔ 2) = i with proba 0.5 for every i ∈ {1, 2, 3}
+         vs. (3 ⊕ 1) ⊔ (5 ⊕ 2) = i with proba 0.5 for every i ∈ {1, 2, 3}
