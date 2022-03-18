@@ -1,0 +1,50 @@
+Objectives: exploit Rust type system (polymorphism, etc.)
+            have functional correctness
+            exploit cryptographers who can review C/Rust
+
+typical crypto library: 100kLoC
+
+key: provide libraries that
+  1. translate easily to proof assistant model (state monad, etc.)
+  2. in check with programmer's mental model
+
+Diapositive 13: types & syntax
+  subtility: references can only be taken in function calls
+  -> avoid tricky borrow semantics
+
+Type-checking: linear types, excepted Copy types
+   special cases: borrow rules must be extended structurally for *each* type
+
+Where to join the pipeline
+  MIR: unreadable, esp. for proofs
+  AST: no trait, no borrow checking
+  -> choose AST, redo work
+
+Question: modularity: how to deal with external crates?
+  Answer: use .rmeta of package
+          filter only function whose types follow discipline of Hacspec
+
+Question: borrow from Rust to F*
+  no, everything is purely functional
+
+Question: perf?
+  Answer: priorité de Denis: sémantique
+          priorité des collègues: perf.
+          acchopement: ref. mutables
+
+          actuelement: 2-3x plus lent
+
+Question: pourquoi pas Caml?
+  Answer: choix social
+
+Question: temps de réalisation
+  Answer: 8pers/mois pour le moment
+          difficulté: verbosité du pattern-matching
+
+Open problems
+  - connecting semantics with RustBelt
+  - polymorphism and, in particular, ad-hoc polymorphism
+
+
+Ref.:
+  hal.inria.fr/hal-03176482

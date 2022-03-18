@@ -1,0 +1,25 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 11 Février 2022, 10h30
+
+who: |
+  Denis Merigoux (Inria Paris)
+
+what: |
+  Hacspec: succinct, executable, verifiable specifications for high-assurance cryptography embedded in Rust
+
+
+  Despite significant progress in the formal verification of security-critical components like cryptographic libraries and protocols, the secure integration of these components into larger unverified applications remains an open challenge.
+
+  The first problem is that any memory safety bug or side-channel leak in the unverified code can nullify the security guarantees of the verified code. A second issue is that application developers may misunderstand the specification and assumptions of the verified code and so use it incorrectly.
+
+  In this presentation, we propose a novel verification framework that seeks to close these gaps for applications written in Rust. At the heart of this framework is hacspec, a new language for writing succinct, executable, formal specifications for cryptographic components. Syntactically, hacspec is a purely functional subset of Rust that aims to be readable by developers, cryptographers, and verification experts. An application developer can use hacspec to specify and prototype cryptographic components in Rust, and then replace this specification with a verified implementation before deployment. We present the hacspec language, its formal semantics and type system, and describe a translation from hacspec to F*. We evaluate the language and its toolchain on a library of popular cryptographic algorithms.
+  
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 3002 (TO BE CONFIRMED)
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
