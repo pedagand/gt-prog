@@ -1,0 +1,24 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 25 Mars 2022, 10h30
+
+who: |
+  Mathieu Montin, Amélie Ledein, Catherine Dubois (Loria - Inria Deducteam - ENSIIE, Samovar)
+
+what: |
+  LibNDT: Towards a formal library on spreadable properties over linked nested datatypes
+
+  Nested datatypes have been widely studied in the past 25 years, both theoretically using category theory, and practically in programming languages such as Haskell. They consist of recursive polymorphic datatypes where the type parameter changes throughout the recursion. They have a variety of applications such as modelling memory or constraints over regular datatypes.
+
+  Our work focuses on a specific subset of nested datatypes which we call Linked Nested DataTypes (LNDT), and which induces the definition of some regular datatypes, such as List and Maybe, as well as some nested datatypes, such as Nest and Bush. LibNDT is a core library, developed both in Coq and Agda, which focuses on the set of constructs that can be spread directly from the parameter on which a specific LNDT is built to the LNDT itself (For instance, List is built with the identity parameter). These spreadable elements are of two kinds, functions, such as folds and map, and properties such as the congruence of map or Any and All (existential and universal satisfaction of a predicate inside a LNDT).
+
+  In this presentation, we explain the thought process behind the creation of this specific subset of nested datatypes, and we present different concrete LNDTs, as well as our set of spreadable elements over them. We conclude by an open discussion about various thoughts related to our work.
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 3002
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
