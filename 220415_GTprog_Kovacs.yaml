@@ -1,0 +1,22 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 15 Avril 2022, 10h30
+
+who: |
+  András Kovács (Eötvös Loránd University)
+
+what: |
+  A first-principles investigation of performance of elaboration with dependent types
+
+  In practice, the popular proof assistants based on type theory (Coq, Agda, Lean) all require users to navigate around performance issues and bottlenecks in sufficiently large or complex codebases. I hypothesize some common performance issues and try to address them in a minimal implementation, called "smalltt".
+
+  One goal is to have a concrete data point for what kind of performance is achievable in the presence of the basic convenience features of pattern unification and implicit arguments. Another goal is to develop general solutions which plausibly scale to production-strength systems without losing too much performance, and also allow fine-tuning based on more realistic codebases.
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
