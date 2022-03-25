@@ -1,0 +1,26 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 29 Avril 2022, 10h30
+
+who: |
+  Ghiles Ziat (IRIF)
+
+what: |
+  Reading group: "Principles of Abstract Interpretation", P. Cousot (I)
+
+  We will warm-up with "Introduction" (Chapter I), "Syntax" (Chapter II) and "Structural Deductive Stateless Prefix Trace Semantics" (Section 6). We will skip Parsing (Section 5) that, as we all know, is a solved problem.
+
+  Usual "reading group" rules apply:
+    - the pdf (samizdat quality) can be found in the seminar's github repository (ask [doc@evr.ist] for the password)
+    - we ask that participants have read the relevant text beforehand
+
+  About the book: "Formal methods are mathematically rigorous techniques for the specification, development, manipulation, and verification of safe, robust, and secure software and hardware systems. Abstract interpretation is a unifying theory of formal methods that proposes a general methodology for proving the correctness of computing systems, based on their semantics. The concepts of abstract interpretation underlie such software tools as compilers, type systems, and security protocol analyzers. This book provides an introduction to the theory and practice of abstract interpretation, offering examples of applications to semantics, specification, verification, and static analysis of programming languages with emphasis on calculational design."
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
