@@ -1,0 +1,47 @@
+motivation:
+  induction principles for nested types in Dedukti
+  "free" properties
+
+ result: libndt
+ https://github.com/mmontin/libndt
+
+result: "spreadable properties" on "linked nested datatypes"
+
+"regular datatype": parametric parameter
+"nested datatype": parameter changes in some recursive case
+
+"linked nested datatypes"
+  ornament over list
+   with "type transformer" F : Set -> Set
+
+  examples: slide 6
+
+  idea: use constructor to encode iterate of type transformer
+
+  fun fact: LNDT itself is a type transformer
+
+  Bush tree
+    Coq: size problem or positivity problem
+    Agda: disable termination checking
+
+"spreadable function"
+  definable over F implies definable over LNDT F
+    spreadable: (f: Op F) -> Op (LNDT F)
+
+  example: map
+  example: fold
+  example: predicate transformer
+    ((A -> Prop) -> (F A -> Prop)) -> ((A -> Prop) -> (LNDT F A -> Prop))
+  example: decidability over predicate transformer
+  example: congruence of map
+
+Problem: map from fold
+Problem: zip
+  impossible to implement?
+
+Non-example:
+  Pow a = Zera a | Succ (Pow (a, a))
+  FingerTree a = Empty | Single a | Deep (Digit a)
+
+Q: Non-example of spreadable
+ A: not looked for
