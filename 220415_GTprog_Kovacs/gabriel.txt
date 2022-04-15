@@ -1,0 +1,163 @@
+# Notes from Gabriel Scherer:
+
+Overview:
+- efficiency from frist principles
+- scalable to production-strength
+
+Smalltt design:
+- dependent functions
+- type in type
+- Agda-style implicit arguments
+- top-level definitions
+- local definitions
+- basic higher-order unification
+
+In Coq, implicit arguments are nominal, they do not really appear in
+core types, here they follow the Agda convention instead.
+
+Very basic language, but Church encodings are possible thanks to
+Type-in-Type. This lets us write more interesting
+benchmarks. (Typically church-encoding of GADTs.) But we don't get the
+full, dependent elimination principle.
+
+Pierre: you don't do anything with induction?
+
+Example-church-encoded well-typed STLC. Terms include a lot of implicit
+arguments.
+
+Meta-variables can be displayed. All meta-variables are lifted to the
+toplevel.
+
+First benchmark:
+- smalltt: 9-30s
+- Coq: 2m
+- Lean4: 10m
+- Agda, Idris don't finish
+
+(At first: quadratic parsing in Agda and Idris.)
+
+Where is time spent in the benchmark?
+- in smalltt, a lot of time spent on the GC
+- in other implementations, very hard to tell without being an
+implementation exprt
+
+Example that are exponential in Hindley-Milner systems; linear here thanks
+to metavariable sharing
+
+
+
+Overview of design principles
+
+Principle 1: efficient reduction
+
+- Environment machines (OCaml, GHC, etc.)
+  eval-apply / push-enter
+  eval-apply is used in smallt
+- we should not: do naive substitution of terms
+    if we try to use it:
+      Lean 4: very very slow, you have to do additional optimizations on
+top of it
+        - pervasive memoization
+        - skipping traversals during substitution
+
+Sometimes the argument for substitution is to keep the kernel
+simple. But environment machines are natural and easy to implement,
+usually more than capture-avoiding substitutions. And the
+optimizations you need make things harder.
+
+Closures that capture their environment: making values closed allows
+for weakening to be a no-op, no shifts.
+
+
+
+Principle 2: conversion checking
+
+
+Principle 3: elaboration
+
+- we have to fill holes with terms (metavariable substitutions)
+- we have to produce solution from values
+
+  we need
+
+  quote: Val -> Tm
+
+  but full normalization is too costly in practice
+
+So we want:
+   - quote with unfolding options
+   - evaluation which preserves unfolding options
+
+András's solution:
+  - sharing-preserving eval+elab
+    (efficiently supported by the evaluator)
+   - not: hash-consing
+
+
+The argument against hash-consing: hash-consing can be very
+beneficial, but it adds a significant constant overhead. It's also not
+sufficient for the sort of sharing-preservation I want to
+have. Hash-consing can't preserve sharing loss from beta-reduction.
+
+Example: oneMillion can be written compactly, even with unary natural
+numbers, but the full normal form is incompressible by hash-consing.
+
+
+Gabriel: type-class resolution?
+
+András: I guess in this case there should be hash-consing, use the
+Learn approach with tabling.
+
+András: right, in this case there is no sharing coming from the source
+program. When the input is written by humans, the input is very
+compressed. But instance resolution, you need memoization indeed.
+
+András: we coud also have problems when source programs are written by
+tactics. In Coq it could be an issue, sometimes tactics generate code
+output that is completely unnatural compared to hand-written proofs.
+
+András: I think there is a long-term solution for tactics, code
+  generation is guaranteed to produce well-typed output.
+  => no need to re-evaluate the output, just to check the code generators
+
+
+Adrien: kernel design?
+
+András: kernel needs not necessarily support metavariables, tactics
+etc. You can implement them outside the kernel as long as they are
+strongly typed, as principled as possible.
+
+
+Pierre: you are ignoring inductive types here. Do you expect results
+to carry over to a type theory that support native inductive types?
+
+András: yes I absolutely expect everything to carry over. From the
+elaboration perspective, from the evaluator perspective, they don't
+make things much more difficult. No big change.
+
+To summarize what is *not* obvious:
+- For type-classes, we defintely need memoization.
+- For tactics, it's again a different story, and also for modules.
+- universe levels? probably orthogonal
+
+
+
+On Fri, Apr 15, 2022 at 5:25 PM Pierre-Evariste Dagand <dagand@irif.fr>
+wrote:
+
+> Hi folks,
+>
+>
+> I've pushed my minutes for today's GdT
+>
+>
+> https://github.com/pedagand/gt-prog/blob/main/220415_GTprog_Kovacs/minutes.txt
+>
+> Pull requests welcomed.
+>
+>
+> Thanks again to András for the whirlwind tour!
+>
+> --
+> Pierre
+>
