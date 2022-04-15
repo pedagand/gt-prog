@@ -1,4 +1,4 @@
-smalltt:
+smalltt [https://github.com/AndrasKovacs/smalltt]
  - dependent function
  - type-in-type
  - implicit arguments
