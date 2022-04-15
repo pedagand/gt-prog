@@ -1,0 +1,81 @@
+smalltt:
+ - dependent function
+ - type-in-type
+ - implicit arguments
+ - top-level defs
+ - local defs
+ - Milner-style higher-order unification
+   (for inference & implicits)
+
+ - no pattern-matching
+ - no datatype
+   Church-encoding of GADTs (using type-in-type)
+
+Benchmark 1: STLC in GADT style
+  benchmarked against Coq, Agda & Idris
+  Agda, Idris: blocked by parsing (quadratic)
+  Coq : 2 minutes to load vs. 18 seconds
+    QUESTION: where is the time spent?
+      [no clear answer]
+    QUESTION: what tools for perfomance debugging of theorem prover?
+      [open question, Hugo mentions possibilities in the Coq ecosystem]
+
+INSIGHT: bring meta-variables at top-level
+  give access to context
+  allow sharing
+
+Benchmark 2: iterated (exponential) identity function & iterated (exponential) pairs
+  instant loading
+  <- sharing of meta-variables
+   -> linear complexity
+
+INSIGHT: inductive families induce loss-of-sharing
+  type-indexed casing
+
+Design principles
+  1. evaluate H.O. functional programs
+     maintstream: environment machines
+     here: eval-apply model (efficiency)
+
+       representation: involve De Bruijn index & levels
+         described by Andreas Abel
+
+     QUESTION: how about "just" correctness?
+       probably not much to be gained
+
+  2. Conversion checking
+
+  3. Synthesize terms (implicit arguments)
+
+    INSIGHT: don't normalize values (printing)
+      quote : too large
+      evaluation : track unfolding
+      quote + folding
+
+    Sharing-preserving eval+elab
+    Hash-consing?
+      not supported here
+      not enough, example :
+        oneMillion : Nat = ...
+          compactly described by a function
+          incompressible by hash-consing
+          -> need to keep the beta-redex!
+
+INSIGHT: humans provide highly-compressed terms
+  no automated, structural technique will maintain that
+  -> preserve meaning
+
+  or: reflected tactics?
+
+QUESTION: type-class resolution
+  -> need explicit hash-consing
+    <- no sharing in source program
+
+INSIGHT: minimal kernel is not the end of it
+  <- helps a lot to have a large kernel that can reflect more stuff
+
+QUESTION: add inductive types?
+  should remain representative
+
+QUESTION: universe level?
+  orthogonal
