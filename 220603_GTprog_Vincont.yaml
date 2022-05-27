@@ -1,0 +1,28 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 3 Juin 2022, 10h30
+
+who: |
+  Yaëlle Vinçont
+
+what: |
+  Fuzzing et méthodes symboliques pour la détection de vulnérabilités à large échelle
+
+  Parmi les techniques de détection automatisée de tests, le fuzzing gagne chaque année en popularité.
+
+Cette technique permet d'explorer rapidement la surface d'un programme grâce à la génération automatique rapide de cas de tests, parfois guidée par exemple par des mesures de couverture.
+
+En revanche, dès que le programme contient des conditions spécifiques (par exemple, x = 0x42, où x a été lu depuis l'entrée utilisateur), la probabilité qu'un fuzzeur génère une solution est assez faible.
+
+On propose d'améliorer les perfomances du fuzzeur AFL en le combinant avec une analyse symbolique, qui analysera les traces des cas de tests générés, pour identifier ces conditions (par exemple, on aurait input[0] = 0x0042). On en déduit des prédicats de chemins sous-approximés, qu'on appelle “facilement énumérable”, et dont les solutions sont directement générées par notre fuzzeur modifié.
+
+L'outil ainsi créé, ConFuzz, est intégré à la plateforme d'analyse de code binaire Binsec, développée au CEA List, et a été testé sur LAVA-M, un banc de test standard en fuzzing. 
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts

@@ -1,0 +1,23 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 1 Juillet 2022, 10h30
+
+who: |
+  Jean-Baptiste Tristan (Boston College)
+
+what: |
+  Probabilistic Programming and Molecular Optimization
+
+
+  The energy of a system of atoms is approximately a function of the position of the nuclei. This function is called the potential energy surface (PES). Knowledge of the PES is fundamental in ab-initio sciences but unfortunately, it cannot be computed in closed form. As a result, an important problem is that of exploring the PES to discover important features, such as local minima.
+
+  In this talk, I will introduce an experimental probabilistic programming language designed to facilitate the exploration of PES. In this language, the semantics of a program is a probability distribution over PES. The objective of the compiler is to generate an optimizer that combines solvers from machine learning and quantum chemistry to discover local minima of the PES. While much of this language and compiler is routine, we will see that the principle of conservation of energy brings about genuinely interesting compilation problems. 
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 3052 and on-line
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
