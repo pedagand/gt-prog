@@ -1,0 +1,30 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Vendredi 24 Juin 2022, 10h30
+
+who: |
+  Stanislas Polu (OpenAI)
+
+what: |
+  Formal Mathematics Statement Curriculum Learning
+
+
+  We explore the use of expert iteration in the context of language modeling applied to formal mathematics. We show that at same compute budget, expert iteration, by which we mean proof search interleaved with learning, dramatically outperforms proof search only.
+
+  We also observe that when applied to a collection of formal statements of sufficiently varied difficulty, expert iteration is capable of finding and solving a curriculum of increasingly difficult problems, without the need for associated ground-truth proofs. 
+
+  Finally, by applying this expert iteration to a manually curated set of problem statements, we achieve state-of-the-art on the miniF2F benchmark, automatically solving multiple challenging problems drawn from high school olympiads. See https://arxiv.org/pdf/2202.01344.pdf
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 3052
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
+
+online: |
+  https://u-paris.zoom.us/j/89606151345?pwd=WFQ4SSszMEZlOUt3R1Nia0JtSFdXdz09
+  Meeting ID: 896 0615 1345
+  Passcode: 711474
