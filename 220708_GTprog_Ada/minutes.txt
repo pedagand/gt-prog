@@ -1,0 +1,74 @@
+A reactive operational semantics for a lambda-calculus with time warps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Recap: Guatto's \lambda^*
+
+TODO: examples of stream processors with `unfold`
+
+
+horloge: fonction monotone sur les entiers
+
+`p ==> A` : flux de `A` reindexé par `p`
+  exemple: `pred ==> Str Int`: `n-1` ints au temps `n`
+
+sémantique préfixe : M ; E \Downarrow_n V
+  n : fuel
+  E : préfixe de valeurs en entrées
+  V : préfixe de valeurs en sorties
+
+sémantique de la récursion : 
+
+  x ; M ; E ; stop \Uparrow^n_0 V   [= f(f(f(...(f(stop)))))]
+  -------------------------------
+  rec x. M ; E \Downarrow_n V
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Sémantique incrémentale 
+
+  M || s ; γ ==> s' ; δ
+
+  γ : entrées (increments)
+  δ : sorties  (increments)
+  s : état initial
+  s' : état finaux
+
+γ, δ ::= c                 [scalar]
+       | injᵢ(γ) | (γ , δ) 
+       | nil               [absence]
+       | ▹ (δᵢ)            [packages]
+       | δ .. δ'           [???]
+
+
+key idea: use types to synthesize internal state structure
+  -> represented as increments γ, δ
+
+  TODO: dérivation systématique à partir des types ?
+    pas pour le moment
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Correction
+
+relation logique : relation entre préfixe et liste d'incréments
+  équivalence sémantique préfixe vs. sémantique incrémentale
+
+Challenge: cleverness to define `increments`
+
+ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Future work
+
+- bound memory
+- bound execution time
+
+Q: restreindre langage pour Lustre?
+  A: pas clair
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Agda model
+
+Q: besoin des équations?
+  A: oui ?!
+     en fait: pour faire la relation logique *sur les termes*
