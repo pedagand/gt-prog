@@ -1,0 +1,42 @@
+Based on AFL
+  "mutational fuzzer": mutate a valid source file
+  "greybox": instrument code coverage
+    AFL-gcc: introduce trampolines on each basic block
+    alternative: dynamic instrumentation (slower)
+
+fun fact: on imagemagic, AFL "invents" PNG format
+  TODO: source?
+  requirement: control-flow on small space of values
+
+TODO: link to OCaml & AFL
+
+idea: combine this with symbolic evaluation? 
+  input induces a trace
+  trace generalized to predicates over control-flow
+    go further: constraint input generation
+      stay focused on goal
+    go sideways: enumerate negation of predicates
+      induce new traces
+
+lightweight symbolic execution
+  over DBA (Binsec internal language)
+  induce predicates
+    value constraints
+    memory access
+    etc.
+  backward analysis from assertion
+
+solving inversion predicates
+  input: interval of valid values
+  output: a witness out of the interval
+  -> explore the other side of control-flow
+
+LSE for enumeration
+  easily-enumerable path predicates
+    contraints of variables
+      x ∈ [min, max]
+    equality of variables
+      x = y
+  skip "fuzzing"
+    enumerate directly
+    involves backtracking: bounded by number of vars
