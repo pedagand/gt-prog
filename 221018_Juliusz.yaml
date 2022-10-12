@@ -9,7 +9,13 @@ who: |
 what: |
   Babel-MAC, reloaded
 
-  What happens when Juliusz brings a security protocol to a standardization committee.
+
+  It is usually considered that the security of network protocols is   a difficult problem that should be reserved to specialists ("don't design your own crypto").  Yet, in 2018, together with Clara Dô and   Weronika Kołodziejak, we set out to design a simple and provably correct security mechanism for the Babel routing protocol.
+
+  Much to our surprise, our work passed successfully the IETF's security review, and was subsequently published as RFC 8967. In the Spring of 2022, however, it was discovered that even though our protocol had been proved correct, it was failing in a small number of "real" networks, which turned out to violate one of the assumptions made in our proof.
+
+  In this talk, I will first describe the properties that are expected from a security mechanism. I will then show the proof of correctness of the security mechanism described in RFC 8967, and show the assumptions that it makes about the network. Finally, I will describe how these assumptions turned out to be incorrect, and how we managed to fix the protocol in a backwards compatible manner.
+
   
 where: |
   Université de Paris,
