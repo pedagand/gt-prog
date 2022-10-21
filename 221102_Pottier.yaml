@@ -1,0 +1,26 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 2 Novembre 2022, 14h
+
+who: |
+  François Pottier (Inria)
+
+what: |
+  Reverse-Mode AD en Trois Passes
+
+  Radul et al. ont récemment publié "You Only Linearize Once: Tangents Transpose to Gradients", un article où la différentiation automatique en mode arrière (reverse-mode AD) pour un petit langage d'expressions arithmétiques (avec fonctions du premier ordre non récursives) est obtenue de façon modulaire comme le résultat de trois transformations successives:
+
+   - différentiation automatique en mode avant (forward-mode AD);
+   - séparation des calculs ordinaires et linéaires (unzipping);
+   - transposition des calculs linéaires.
+
+  J'implémente actuellement ces transformations dans le but d'en faire un projet de programmation pour les étudiants du cours MPRI 2.4 "programmation fonctionnelle et systèmes de types". Dans cet exposé très informel, si tout va bien, je présenterai ces transformations en m'appuyant sur des exemples. Je n'apporterai pas d'idées nouvelles vis-à-vis du contenu de l'article mais serai prêt à discuter de ma compréhension de l'article avec les auditeurs intéressés.
+  
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
