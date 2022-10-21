@@ -1,0 +1,93 @@
+MAC protection for Babel
+Juliusz
+
+
+model: 
+  asynchronous but sometimes synchronous
+  lossy but no systematic failure
+  failure probability is 1
+  communication is high latency
+    CPU: 10 ns = 30 cm for light
+    networking: New York
+
+3 requirements
+  - applicability statement
+  - management interface
+  - security mechanism
+    -> usually "use TLS"
+
+Why not TLS?
+  - Babel is over UDP
+  - Babel uses unicast and multicast
+  - Babel is supposed to run on unreliable storage, unstable clock routers
+
+Primitive: cryptographic hashing
+  let h : A* -> 2^n
+
+  pre-image resistance: finding x st h(x) = y takes 2^{n-1} steps
+  collision resistance: finding x, x' st h(x) = h(x') takes 2^{n/2} steps
+
+Construction: message authentication code (MAC)
+  let MAC_k : A* -> A*
+
+  property: cannot compute MAC_k(m) without knowing k *and* m
+    (among others)
+  -> signature
+
+Protocol: shared-key mutual authentication
+  nonces are valid *within a context*
+    unicity is relative
+
+  "channel binding": always favor MAC_k(sender . receiver . msg)
+
+Babel MAC: requirements
+  invulnerable to spoofing (authenticity)
+  invulnerable to packet modification (integrity)
+  invulnerable to replay
+
+  work in both unicast & multicast
+  without monotonic clocks
+  without stable storage
+
+Replay protection: counter/clock
+  state:
+    on sender: one global last sent PC value
+    on receiver: one last received PC for every peer
+
+  upon packet reception:
+    if last-PC >= pkt.PC: drop
+    otherwise: sender.last-PC = pkt.PC
+
+Recovering receiver state: challenges
+  B -> A: challenge(nonce)
+  A -> B: challenge-reply(nonce), PC = 42, MAC
+  B sets A.last-PC := 42
+
+Reconstructing sender state: indices (epoch)
+  A -> B: m, PC=42, index=i1, MAC
+  (A reboots)
+  A -> B: m, PC=1, index=i2, MAC  [i2 != i1]
+  B -> A: challenge(nonce), MAC
+  A -> B: challenge-reply(nonce), PC=2, index=i2, MAC
+  A -> B: m, PC=3, index=i2, MAC
+
+
+  remark: PC is necessary, could be reduced to Bool
+    but no less
+
+Problem: unicast vs. multicast
+  reorder multicast before unicast
+
+  root cause: Wifi power-saving mode
+    unicast: wake up individuals every short period 
+    multicast: globally synchronized wake-up every long period
+
+    window size: 20ms
+
+Reordering: duplicate state
+  solution: PC for unicast & multicast
+    -> partial order
+    key invariant: bind destination to keep unicast & multicast separate
+      forbid unicast as multicast
+
+  not symmetric: only receiver side
