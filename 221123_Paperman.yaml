@@ -1,0 +1,23 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 23 Novembre 2022, 14h
+
+who: |
+  Charles Paperman (Inria)
+
+what: |
+  Vectorial execution of automata
+
+  I will present work in progress on a research programs aiming to compile efficiently automata-model of computation using vectorial instructions and bit-level paralellism.
+
+  The compilation procedure relies on algebraic automata theory that will be gently introduced. Some complexity related consideration will also provides insight on what to expect and what is (probably) hopeless to compile efficiently.
+
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
