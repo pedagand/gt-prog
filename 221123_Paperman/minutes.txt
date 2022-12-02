@@ -1,0 +1,63 @@
+Vectorial execution of automata, Charles Paperman
+
+Objective: explain how to execute an automata *fast*
+
+1. Vectorized automata execution
+
+let
+ - a deterministic automata A
+   with small transition table
+
+ - a buffer char *buffer, size_t length
+   (read from left to right, strictly: streaming)
+
+output: 
+ - pointer to next position accepted by automata
+
+Example:
+ - memchr
+ - strchr
+ - strspn, index, strlen
+ - unicode checking
+
+rely on compiler to optimize
+  loop unrolling, auto-vectorization
+  /> does not work: breaks on control-flow
+
+2. "Compilation" procedure
+
+Idea: automata = for-loop with irregular data access
+                               (ie., transition table)
+
+running example: recognize ".*ab*a.*"
+  vectorial : masks `a` and `b` on input stream
+    (masks)
+  control   : R = ((Ra << 1) + Rb) & Rb
+
+Serre, 2006: addition corresponds to until in temporal logic, etc.
+  forward-temporal logic over finite words = addition vectorial programs
+  example: F(a ∧ X(b ∪ a))
+         ~ ((Ra << 1) + Rb) & Rb
+
+3. Why it is hard to vectorize, lower-bounds
+
+Mapping automata to addition vectorial programs?
+  in theory: O(2^{2^n})
+  in practice: can achieve O(2^n) / polysize wrt. monoids
+
+State of the art
+  HyperScan: automata smaller than 16 states
+    focus on subsets of automata (self-loop)
+    /> frustrated by small automata that do not vectorize
+
+Theoretical model: cost of executing streaming algorithms in parallel?
+  model: Boolean circuit
+  complexity: size of circuit
+   -> literature: belong to "TC0" class
+      executing automata with Boolean circuit: NC¹-complete
+      /> well-known open problem
+      -> seems unlikely to be efficiently compilable
+
+Example: automata S5
+  impossible to vectorize?
+  https://cstheory.stackexchange.com/questions/33487/regular-versus-tc0
