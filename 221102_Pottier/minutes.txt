@@ -55,6 +55,8 @@ Unzipping: does not care about forward mode
       Paul-André: any hope to describe it formally?
       mention "Ulrich work"? "stack description"
 
+      remark: actual type depends on sequential code generation
+
 Transposition: inverting linear wires
   ie. functions with no unrestricted results
 
