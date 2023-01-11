@@ -1,0 +1,26 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 11 Janvier 2023, 14h
+
+who: |
+  Laurent Prosperi (Inria)
+
+what: |
+  Programming distributed systems with Varda
+
+
+  Assembling off-the-shelf or independently-developed components into a system is a common practice. Although a few useful tools exist, this remains manual, ad-hoc, complex, labour-intensive, and error-prone.
+
+  Varda provides a higher level of abstraction. An Varda program describes how to compose components into a safe architecture. The programmer isolates an off-the-shelf (OTS) component behind an Varda shield, which specifies its interface, its protocol, and its pre- and post-conditions.
+
+  Components can be logically nested, providing encapsulation boundaries; the outer component orchestrates its inner components. It can intercept communication, as a general mechanism to compute over components and messages. Varda provides strong guarantees, enforcing the specification by static analysis, by run-time checks, and by sandboxing. To be useful, Varda takes a pragmatic approach. An OTS adaptor can contain non-Varda code (e.g., Java). Varda provides control over properties such as elasticity, placement, and inlining. Varda supports non-stop execution thanks to supervision mechanisms.
+
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
