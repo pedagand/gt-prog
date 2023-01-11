@@ -1,0 +1,71 @@
+
+
+Jasmin
+  not certified: parser & assembly output
+  
+  extract model to Easycrypt
+
+Easycrypt
+  Hoare Logic
+  probabilist Hoare Logic
+  probabilist relational Hoare Logic
+
+  standard library of mathematical structures
+
+
+Kyber: key exchange mechanism (KEM)
+   Hakyber: Jasmin implem, proved in Easycrypt
+
+   components:
+     Montgomery: represent F_q in constant time
+     Polynomials (addition)
+     NTT: Fourier transform for polynomials multiplication
+
+
+NTT: constants chosen to reduce to bit-level definitions
+
+Q: Diffie-Hellman: easycrypted?
+  A: probably not
+
+Challenges: from 'while' to somewhat-'for' loops
+  example:
+    j <- 0
+    while (j < len) {
+      j <- 2 * j
+      t <- t * j
+      j <- j + 1
+    }
+
+    Q: unrolling?
+      A: 256^3 lines of code
+
+    objective: reasoning principle for these sorts of loops
+      invariant: 2 propositions
+        - on constants
+        - on variables and counters
+
+    Q: why not dedicated syntax?
+      A: why not.
+
+Q: rHL credible?
+  Cryptoline: pure HL over assembly program
+    use CAS for maths
+    use SMT for safety
+    explicit annotation
+
+    very memory hungry: 2TB
+
+  example: program vs. bit-reversed program
+    introduce Hoare logic rules to deal with for-loops going in opposite directions
+
+Challenge: clone-based model of algebraic theories
+  specialized full-copy of hierarchy
+  /> massive code duplication
+
+Challenge: annotations
+  proving loop equivalence meant to explicit state joint invariant
+  -> add annotations
+
+
+Q: deoptimizing decompiler?
+  A: yes

@@ -1,0 +1,32 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 7 Décembre 2022, 14h
+
+who: |
+  Antoine Séré (Inria)
+
+what: |
+  Developments around the correction proof of Hakyber
+
+
+  Kyber is a key-encapsulation mechanism (KEM), whose security is based on the hardness the Module-LWE problem. It is the only KEM that has been selected by the NIST Post-Quantum Cryptography project, and will be part of NIST's first post-quantum cryptography standard.
+
+  Hakyber, a formally verified implementation of Kyber, has been developed. Hakyber is written in Jasmin, and formally verified in EasyCrypt.
+
+  EasyCrypt has already been used to prove the correction of implementations of cryptographic primitives, such as of ChaCha20-Poly1305. This proof is done by "game hopping": the correction of a naive implementation of the primitive is proven using EasyCrypt's probabilistic Hoare logic (pHL), and it is shown to be equivalent to gradually more optimized implementations using EasyCrypt's probabilistic relational Hoare logic (pRHL).
+
+  Hakyber differs from the cryptographic primitives formalized in EasyCrypt by the complexity of the mathematical structures involved in it's correctness and security proofs. In particular, it's correction proof involves polynomials over finite fields, quotient rings and Number Theoretic Transforms (NTTs), variants of the Fourier transform used in fast polynomial multiplication algorithms.
+
+  The correction proof of Hakyber's NTT is one of the trickiest parts of the total correction proof. We will discuss the issues we encountered in this proof, the solutions we used to overcome them, and current and planned developments of EasyCrypt that were motivated by these issues.
+
+  In particular, we will talk about the theories developed to deal with equivalence proofs of nested for loops, as well as those describing algebraic hierarchies using EasyCrypt's clone mechanism. We will then present the planned replacement for these theories, using EasyCrypt's annotations and type class mechanism respectively.
+
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
