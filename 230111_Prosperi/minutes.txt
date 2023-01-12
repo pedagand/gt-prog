@@ -1,0 +1,80 @@
+Programming distributed systems with Varda
+
+running example of distributed system 
+  gateway (serialization/deserialization)
+  load balancer
+  key-value store (RocksDB)
+
+requirements
+  strong guarantees
+  good perf
+  automation
+  debuggability, tracability
+
+state of art
+  manual API interconnection
+    /> boilerplate
+    /> no semantics
+  orchestration engine (k8s)
+    /> little semantics
+  PL
+    IDL
+     /> low-level
+    Actor model
+     /> no safety
+    Specification languages (PlusCal, P)
+     /> no code generation
+
+Varda: somewhere between Actor and Specification
+  describe component API
+    including safety predicates
+    + perhaps: implementation
+    
+  typically: library wrapped in message-passing runtime
+
+Component interface
+  protocol: binary session type
+  ports
+    "active": session creation
+    "passive": session ?
+    "supervision"
+
+Channels
+  first-class citizen
+    specify who can create channels
+            who can receive through them
+
+Components
+  create arbitrary components or channels
+  send/receive messages
+  check invariants
+
+  WANT: multi-party
+    example: 3 servers A -> B -> C -> A
+
+Interception
+  static context + dedicated entry-point
+
+  indirection around a specific interface
+
+
+Performance
+  control distribution
+    placement specification
+      same machine
+      distinct machines
+    elasticity
+  inlining components
+    'spawn LoadBalancer(..) in otherComponent'
+      *dynamic* process!
+    ~function composition
+
+Supervision
+  by default: nothing about failure
+  leave it to component runtime
+    eg. Akka
+
+Q: stateful component: state management?
+  A: currently: S3 *component*
+  A: better: explicit communication channel
+
