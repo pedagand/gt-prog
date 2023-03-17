@@ -1,0 +1,22 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 29 Mars 2023, 14h
+
+who: |
+  François Pottier (Inria)
+
+what: |
+  Sémantiques monadiques et sémantiques à pas amples
+
+  Dans cet exposé très informel à propos d'un travail en cours, je souhaiterais discuter de différents styles pour définir (en Coq) la sémantique d'un langage de programmation. Une de mes motivations est d'obtenir une sémantique au moins partiellement exécutable dans Coq et d'en tirer un mécanisme d'exécution symbolique qui pourrait être exploité dans un système de vérification de programmes. 
+
+  Au cours de l'exposé, je présenterai deux styles de sémantique (pour un langage sans effets de bord, hormis divergence et plantage), et au-dessus de chacun d'eux, je construirai une logique de Hoare. Le premier style, "monadique jusqu'au bout", reproduit des idées que l'on trouve dans la littérature: un premier interprète est exprimé dans une monade libre bien choisie, puis, dans un second temps, les habitants de cette monade sont traduits dans d'autres monades (monade des interaction trees; monade de spécification). Le second style, "à pas amples", est hybride: dans une couche inférieure, on conserve le même interprète monadique, exprimé dans la monade libre; dans une couche supérieure, on raisonne à l'aide d'une sémantique opérationnelle à petits pas. J'aimerais recevoir des commentaires et suggestions du public afin de prévoir les prochaines étapes: ajout du non-déterminisme, du parallélisme, de l'état mutable, puis construction d'une logique de programmes de la famille Iris.
+
+where: |
+  Université de Paris,
+  Bâtiment Sophie Germain, Salle 1007
+  8 Place Aurélie Nemours
+  75205 Paris Cedex 13
+
+  https://www.irif.fr/informations/contacts
