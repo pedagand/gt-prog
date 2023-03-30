@@ -1,0 +1,63 @@
+Monadic Ample-step semantics
+
+Goal: Iris for as-large-as-possible OCaml fragment
+  currently: libLang
+
+Idea: write semantics as a monadic interpeter
+      get symbolic execution for free
+  currently: emulated in Ltac
+
+  similarly: skeletal semantics (A. Schmidt)
+
+Hugo: C. Dubois interpreter from relational spec (in Coq 8.6)
+
+Challenge: 
+  - divergence
+  - non-determinism
+  - local state
+
+Proposal:
+  - declare free monad
+  - interpret into monads
+  - derive small-step transition system
+
+spec = predicate logic
+Div monad = reference implement
+  -> need "Div"-y stuff for non-determinism
+     On-going work of Yannick Z.
+
+source of non-determism:
+  - reduction order
+  - assert erasure or not
+
+Free monad
+  Ret
+  Stop (operation)
+  Fail : uncatchable exception (for soundness theorem)  
+  Next : catchable exception
+
+  idea: recursive calls are delegated to interpreter
+
+Remark: Next could be split into `choice` and `raise`
+  proper free monad
+
+  also: `Next` is not an *algebraic* operation
+
+Interpretation in CPS over Prop
+Interpretation in itree
+  related by monadic morphism
+
+
+Pas ample: define `step` inductive relation
+  allow one-step semantics of general recursion
+
+  step-indexed version of interaction trees
+
+  wp = safe . eval
+
+operator Par: concurrent interleaving
+  used to model applicative application
+ 
+  Q: how to model Par as algebraic effect?
+  Q: how does Par interact with State?
+  
