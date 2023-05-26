@@ -1,0 +1,30 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 7 Juin 2023, 14h
+
+who: |
+  Samuel Vivien (ENS Paris / IRIF)
+
+what: | 
+  How to prove that you need Cake ?
+
+
+  PureCake, is a mechanically-verified compiler for PureLang, a lazy,
+  purely functional programming language with monadic
+  effects. PureLang syntax is Haskell-like and indentation-sensitive,
+  and its constraint-based Hindley-Milner type system guarantees safe
+  execution. This talk will present how optimization soundness can be
+  proven using equational reasoning with the example of the demand
+  analysis pass and other related optimizations.
+
+  Based on : PureCake: A Verified Compiler for a Lazy Functional
+  Language [PLDI'23] by Hrutvik Kanabar, Samuel Vivien, Oskar
+  Abrahamsson, Magnus O. Myreen, Michael Norrish, Johannes Åman
+  Pohjola, Riccardo Zanetti
+  
+where: |
+  Université de Paris,
+  Bâtiment Olympe de Gouges, Salle 146
+
+  https://www.irif.fr/informations/contacts
