@@ -1,0 +1,73 @@
+Developing a decentralized exchange for the EVM
+################
+
+
+Ethereum
+
+  snapshot: état global de la blockchain
+  validateur / mineur (bitcoin) : ceux qui ont droit d'écriture (notaire)
+    eth.: écriture = exécution
+    enregistre diff
+    divergence: résolu par "reorg"
+      tout peut être rollback a priori
+      -> convergence probabiliste uniquement (sur papier)
+  utilisateur : client d'acte notarial
+  mempool: buffer de transactions
+    batch bloc de transactions
+    *surface d'attaque* : time-based arbitrage
+      bots
+  tick: vitesse d'ajout d'un nouveau bloc (plusieurs secondes)
+    fonction de la "fee"
+
+  "qui à droit d'écrire" : protocole de la blockchain
+    bitcoin: proof of work
+    eth, thezos: proof of stake
+
+Transaction
+  "from": adresse du portefeuille source (utilisateur)
+  "to": smart contract ou utilisateur
+    exemple: smart contract : appel de fonction du contrat
+  "logs": évènements émis par contrats appelés
+    ~ étiquettes du système de transition du contrat
+
+Transaction graph
+  utilisateur ("externally owned accounts")
+    associé à crédit en ETH
+    pas de bytecode associé
+  smart contract
+    associé à bytecode + crédit en ETH
+
+  "call" : ~fork
+  "delegate call" : ~thread
+    synchronisé sur la syntaxe
+    contrats immutables mais variables sur chaîne
+    -> édition dynamique
+
+  réentrance : contrat_1 -[ call ]-> contrat_2 -[ call ]-> contrat_1
+    solution : verrous
+    solution : canaux cachés sur coût accès variable
+
+  gaz: le contrat est responsable de borner son exécution
+    call avec limite de gaz
+
+EVM
+  stack machine
+    max stack size: 256
+    not Turing machine (gaz)
+  heap memory (RW)
+  calldata memory (R)
+  returndata memory (RW)
+  persistent storage (RW)
+
+  cost model: stack < calldata < memory << storage
+
+
+Mangrove
+  exemple: conversion de monnaies
+    book order : src -> dst : price
+    taux: indiqué par le spread
+  idée: matching rules made public
+    -> no need for book certification
+  fluidifier : src -> dst : price , @smartcontract
+    @smartcontract: promesse du vendeur de faire la conversion
+    

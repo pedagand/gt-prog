@@ -1,0 +1,21 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 10 Mai 2023, 14h
+
+who: |
+  Jean Krivine (Mangrove)
+
+what: | 
+  Developing a decentralised exchange protocol for the EVM
+
+
+  "Smart contract" are software whose byte code is executed by node validators/block makers operating a block chain. These "open^2" code (open source + open execution layer) provide an entirely transparent execution stack (on public blockchains) that is foreseen to complement (or even replace) most standard trusted third party based transactions (i.e based on trusting a bank, or a notary for settlement) in a near future.
+
+  In this workgroup I will introduce basic concepts of the Ethereum Virtual Machine (EVM) and Solidity (the most used programming language on top of the EVM). To illustrate these concepts I will describe Mangrove, a decentralised exchange protocol designed for the EVM. This should allow us to discuss difficulties and technical solutions that naturally arise when designing smart contracts managing user funds. In particular we will discuss current limitations of solidity and the need for better programming paradigms for critical onchain softwares.
+
+where: |
+  Université de Paris,
+  Bâtiment Olympe de Gouges, Salle 147
+
+  https://www.irif.fr/informations/contacts
