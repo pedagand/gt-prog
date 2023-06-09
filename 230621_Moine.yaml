@@ -1,0 +1,36 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mercredi 21 Juin 2023, 14h
+
+who: |
+  Alexandre Moine (Inria Paris)
+
+what: | 
+  Diamonds Are Forever: Reasoning about Heap Space in a Concurrent and Garbage Collected Language
+
+
+  Memory management is notoriously difficult in a concurrent
+setting. The presence of garbage collection greatly simplifies the
+life of the programmer, eradicating many memory-related bugs. However,
+the heap space usage of garbage-collected programs can be tricky to
+understand and reason about, as there is no explicit program point
+where space is reclaimed.
+
+  We recently presented a Separation Logic with Space Credits to
+reason about heap space under garbage collection in a high-level, yet
+sequential, language.
+
+  In this talk, we scale up to a concurrent language. For this
+purpose, we introduce new "pointed-by-thread" assertions, which keep
+track of the existence of stack-to-heap pointers in a reasonably
+lightweight manner. We illustrate our approach on a range of examples,
+including the standard lock-free Treiber's stack, and unveil its
+surprisingly high heap memory bounds in the presence of garbage
+collection.
+  
+where: |
+  Université de Paris,
+  Bâtiment Olympe de Gouges, Salle 146
+
+  https://www.irif.fr/informations/contacts
