@@ -1,0 +1,91 @@
+PureCake
+
+Motivation: looking for safe programming language for critical software
+  how much safety goes down to assembly?
+
+  PureCake: verified compiler for lazy purely-functional language
+     to CakeML
+
+QUESTION: run-time system too?
+
+Contribution: 
+  monadic reflection
+  demand analysis
+  optimization for lazy idioms
+
+PureLang
+  Haskell-like syntax
+  
+  2 ASTs
+    compiler expressions (CE)
+    semantic expressions (SE)
+      desugared from CE
+      no pattern-matching
+
+    example: lambda
+      in CE: list of arguments
+      in SE: unary argument
+
+
+  semantics through interaction trees
+
+Program equivalence
+  build using Howe's method
+
+Type system
+  (no type-classes)
+  (somewhat lazy miniML)
+
+  remark: lazy semantics + exhaustive split case -> preservation fails
+    TODO: check the paper
+
+Compilation
+  implement delay/force as "effect handlers" in CakeML
+    also: perform monadic reflection
+
+  binding group analysis
+    use pseudo-topological sort 
+    produce let bindings from equations
+
+Type-checking
+  constraint-based type inference
+    generate all constraints
+    solve constraints
+
+    inspired by TOP framework
+  
+Demand analysis
+  analyse to detect divergence
+    if not diverging: put `seq` before
+
+  QUESTION: custom fixpoint analysis? int abs?
+
+  remark: observable difference between type error and divergence
+    if x then seq v y else seq v z 
+    ~ seq v (if x then y else z)      
+
+      if only if
+        type error (on x) and divergence (on y and z) are not distinguished
+
+Compiler correctness
+  syntactic relations: e R e'
+    on SE
+
+    prove equivalences
+      e R e' -> [[ e ]] = [[ e' ]]
+    non-committal
+
+  code transfo : compile ce = ce' 
+    on CE
+
+    orient rewrites in R
+      wf ce ->                                keep compiler invariants
+      (desugar ce) R (desugar (compile ce))
+
+Semantics mismatch
+  CakeML: trace based
+  Pure: interaction trees
+
+QUESTION: run-time difference?
+QUESTION: use interaction trees in [[ _ ]]?
+QUESTION: why not use oracles for Pure?
