@@ -1,0 +1,44 @@
+Diamonds are forever
+Heap space bounds
+
+motivation: space is a resource in a separation logic
+  Hofmann'99: \diamond 1 "1 space credit"
+    right to allocate 1 memory word
+
+without GC: trivial
+  diamond is potential
+  malloc/free syntactically transfer potential to/from actual
+
+with GC: non-trivial
+  `free` may happen at any point
+  a suspended thread may produce space leak
+
+
+ingredient: fractional permission
+  points-to p: read-only
+  points-to 1: read/write
+
+ingredient: logical model of GC
+  `free` is a *ghost* update
+
+ingredient: "pointed-by" relation
+  \ell <-|_{p} L are reachable predecessors of \ell
+
+  corollary: \ell <-|_{1} L over-approximates reachable predecessor of \ell
+
+ingredient: ghost thread identifier \pi
+  logic: { \phi } \pi : tm { \psi }
+  logically identify thread
+
+  pointed-by-thread: l <=|_{p} \Pi
+
+-> logically describe behavior of GC free
+   remark: "force-framed rule" is surprising
+     [unusual in separation logic]
+
+Specification: atomic triples
+  { thread-private precond } < thread-public precond > \pi : term < thread-public post > { thread-private post }
+
+  add: "virtual space credit"
+    turn into space credit when full ownership is restored
+  
