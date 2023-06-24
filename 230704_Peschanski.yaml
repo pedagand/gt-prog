@@ -1,0 +1,38 @@
+--- # Groupe de Travail programmation @ IRIF
+
+when: |
+  Mardi 4 Juillet 2023, 14h
+
+who: |
+  Frédéric Peschanski (LIP6)
+
+what: | 
+  Un petit tour de Lean4
+
+
+  En me basant sur un cours de Master 2 à Sorbonne Université (Spécification et Validation de Programmes), je ferai une petite démonstration de l'assistant de preuve Lean4, en suivant, en gros et sans doute partiellement, le plan du cours :
+
+    1) Introduction à Lean4 et aux types dépendants
+
+    2) Vérification "exogène" (a.k.a. externe) de "vrais programmes" (mini-projet 1)
+ 
+    3) Spécifications et raffinement (a.k.a. Event B en Lean4)
+
+    4) Programmation à types dépendants et vérification "endogène"
+
+    5) Mini-projet 2 : Logique de Hoare
+
+  Cela me permettra de faire un petit retour d'expérience sur l'utilisation de cet outil dans le cadre d'un cours, qui précédemment se basait sur l'assistant de preuve Coq
+
+  Clauses de non-responsabilité :
+  - je n'ai pas d'action chez Microsoft (malgré les apparences)
+  - je ne suis pas expert ès-types dépendants (en dehors de la pédagogie)
+  - mon langage favori est Lisp 
+
+  (... vous êtes prévenus)
+  
+where: |
+  Université de Paris,
+  Bâtiment Olympe de Gouges, Salle 163
+
+  https://www.irif.fr/informations/contacts
